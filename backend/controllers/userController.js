@@ -40,3 +40,19 @@ export const login = async (req, res) => {
     return res.json({ message: error.message })
   }
 }
+
+// Logout user
+export const logout = async (req, res) => {
+  return res.clearCookie('token').json({
+    success: true,
+    message: 'Logout successfully'
+  })
+}
+
+// Info user
+export const infoUser = async (req, res) => {
+  console.log(req.uid)
+  const user = await User.findById(req.uid)
+
+  res.json(user)
+}
