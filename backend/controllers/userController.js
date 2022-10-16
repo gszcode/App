@@ -8,14 +8,14 @@ export const register = async (req, res) => {
   try {
     let user = await User.findOne({ email })
 
-    if (user) return res.json('El usuario ya existe')
+    if (user) throw new Error('User already exist')
 
     user = new User({ name, email, password })
     await user.save()
 
     generateToken(user.id, res)
   } catch (error) {
-    return res.json({ message: error.message })
+    return res.status(400).json({ message: error.message })
   }
 }
 
@@ -26,18 +26,16 @@ export const login = async (req, res) => {
   try {
     const user = await User.findOne({ email })
 
-    if (!user) return res.json({ message: 'No existe el user' })
+    if (!user) throw new Error('User does not exist')
 
     const passwordMached = await user.comparePassword(password)
 
-    if (!passwordMached) {
-      return res.json({ message: 'Email o contraseña invalido' })
-    }
+    if (!passwordMached) throw new Error('Invalid Email or Password')
 
     // Generate token
     generateToken(user.id, res)
   } catch (error) {
-    return res.json({ message: error.message })
+    return res.status(404).json({ message: error.message })
   }
 }
 
