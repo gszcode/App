@@ -1,15 +1,16 @@
 import jwt from 'jsonwebtoken'
 
 export const verifyToken = (req, res, next) => {
-  console.log(req.cookies)
   const { token } = req.cookies
 
-  if (!token) {
-    return res.json({ message: 'No existe el token' })
+  try {
+    if (!token) throw new Error('Token not exist')
+
+    const { uid } = jwt.verify(token, process.env.JWT_SECRET)
+    req.uid = uid
+
+    next()
+  } catch (error) {
+    return res.status(404).json({ error: error.message })
   }
-
-  const { uid } = jwt.verify(token, process.env.JWT_SECRET)
-  req.uid = uid
-
-  next()
 }
