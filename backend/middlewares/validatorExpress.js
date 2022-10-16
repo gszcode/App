@@ -1,14 +1,14 @@
-import { body, validatonResult } from 'express-validator'
+import { body, validationResult } from 'express-validator'
 
 // Errors
 export const resultValidator = (req, res, next) => {
-  const errors = validatonResult(req)
-
-  console.log(errors)
+  const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() })
+    return res.json({ errors: errors.errors[0].msg })
   }
+
+  next()
 }
 
 // Validations
@@ -35,7 +35,7 @@ export const registerValidator = [
     .withMessage('Password must have more than 8 characters'),
   body('repassword').custom((value, { req }) => {
     if (value !== req.body.password) {
-      throw new Error('Password confirmation does not match password')
+      throw new Error('Passwords do not match')
     }
 
     return true
@@ -49,12 +49,13 @@ export const loginValidator = [
     .notEmpty()
     .withMessage('Enter your Email')
     .isEmail()
-    .withMessage('Email or Password invalid'),
+    .normalizeEmail()
+    .withMessage('Invalid Email or Password'),
   body('password')
     .trim()
     .notEmpty()
     .withMessage('Enter your Password')
     .isLength({ min: 8 })
-    .withMessage('Email or Password invalid'),
+    .withMessage('Invalid Email or Password'),
   resultValidator
 ]
