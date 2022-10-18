@@ -1,0 +1,66 @@
+@mixin titles($textAlign, $fontSize, $marginBottom) {
+  text-align: $textAlign;
+  font-size: $fontSize;
+  margin-bottom: $marginBottom;
+}
+
+$white-color: #fff;
+
+.landing {
+  background-image: url('../images/cover.jfif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white-color;
+
+  &__welcome {
+    &--title {
+      @include titles(center, 17px, 65px);
+    }
+
+    &--subtitle {
+      @include titles(center, 30px, 65px);
+    }
+
+    &--scroll {
+      display: block;
+      margin: auto;
+      width: 150px;
+      padding: 15px 30px;
+      text-align: center;
+      background-color: $white-color;
+      text-decoration: none;
+      color: #000;
+      border: 1px solid $white-color;
+      transition: all 300ms;
+    }
+
+    &--scroll:hover {
+      background-color: transparent;
+      border: 1px solid $white-color;
+      color: $white-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.landing::after {
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: $white-color;
+  clip-path: polygon(100% 67%, 0% 100%, 100% 100%);
+}
+
+@media screen and (max-width: 390px) {
+  .landing::after {
+    clip-path: polygon(100% 85%, 0% 100%, 100% 100%);
+  }
+}
