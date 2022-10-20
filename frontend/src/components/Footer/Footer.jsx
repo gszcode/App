@@ -6,16 +6,16 @@ export default function Footer() {
   return (
     <footer className="footer">
       <section className="footer__download">
-        <h4 className="footer__download--title">DOWNLOAD OUR APP</h4>
-        <p className="footer__download--parrafo">
+        <h4 className="footer__download__title">DOWNLOAD OUR APP</h4>
+        <p className="footer__download__parrafo">
           Download App for Android and <br /> IOS mobile phone
         </p>
         <img
           src={googlePlay}
           alt="GooglePlay"
-          className="footer__download--img"
+          className="footer__download__img"
         />
-        <img src={appStore} alt="AppStore" className="footer__download--img" />
+        <img src={appStore} alt="AppStore" className="footer__download__img" />
       </section>
       <section className="footer__header">
         <h2 className="footer__header__title">ECOMMERCE</h2>
