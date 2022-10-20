@@ -5,28 +5,28 @@ import './Navbar.scss'
 
 export const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar__image">
-        <img src={logo} alt="Logo" className="navbar__image--logo" />
+    <nav className="navbar navbar__mobile">
+      <div className="navbar__image navbar__image--mobile">
+        <img src={logo} alt="Logo" className="navbar__image__logo" />
       </div>
       <div className="navbar__menu">
-        <Link className="navbar__menu--link" to="/">
+        <Link className="navbar__menu__link" to="/">
           Home
         </Link>
-        <Link className="navbar__menu--link" to="/products">
+        <Link className="navbar__menu__link" to="/products">
           Products
         </Link>
-        <Link className="navbar__menu--link" to="/contact">
+        <Link className="navbar__menu__link" to="/contact">
           Contact
         </Link>
-        <Link className="navbar__menu--link" to="/about">
+        <Link className="navbar__menu__link" to="/about">
           About
         </Link>
       </div>
       <div className="navbar__icons">
-        <FaSistrix className="navbar__icons--item" />
-        <FaShoppingCart className="navbar__icons--item" />
-        <FaUser className="navbar__icons--item" />
+        <FaSistrix className="navbar__icons__item" />
+        <FaShoppingCart className="navbar__icons__item" />
+        <FaUser className="navbar__icons__item" />
       </div>
     </nav>
   )
