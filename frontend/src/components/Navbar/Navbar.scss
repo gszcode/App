@@ -16,7 +16,7 @@
     width: 250px;
     height: 100px;
 
-    &--logo {
+    &__logo {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -24,7 +24,7 @@
   }
 
   &__menu {
-    &--link {
+    &__link {
       margin: 0 20px;
       text-decoration: none;
       font-size: 20px;
@@ -32,7 +32,7 @@
       transition: border 300ms;
     }
 
-    &--link:hover {
+    &__link:hover {
       border-bottom: 1px solid #fff;
     }
   }
@@ -43,7 +43,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    &--item {
+    &__item {
       font-size: 22px;
       color: #fff;
       cursor: pointer;
@@ -54,5 +54,9 @@
 @media screen and (max-width: 1000px) {
   .navbar {
     display: none;
+  }
+
+  .navbar__mobile {
+    display: block;
   }
 }
