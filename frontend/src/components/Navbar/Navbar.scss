@@ -1,16 +1,25 @@
+@mixin flex($dflex, $fWrap, $fDirection, $fContent, $aItems) {
+  display: $dflex;
+  flex-wrap: $fWrap;
+  flex-direction: $fDirection;
+  justify-content: $fContent;
+  align-items: $aItems;
+}
+
+$white-color: #fff;
+$black-color: #000;
+$hover-color: rgb(217, 81, 81);
+
 .navbar {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(flex, wrap, row, space-between, center);
   padding: 0 25px;
   position: fixed;
   width: 100%;
   height: 100px;
+  background: $black-color;
   top: 0;
   left: 0;
-  background: #000;
+  z-index: 999;
 
   &__image {
     width: 250px;
@@ -25,38 +34,101 @@
 
   &__menu {
     &__link {
-      margin: 0 20px;
+      margin: 0 18px;
       text-decoration: none;
       font-size: 20px;
-      color: #fff;
+      color: $white-color;
+      border-bottom: 1px solid $white-color;
       transition: border 300ms;
     }
 
     &__link:hover {
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid $white-color;
     }
   }
 
   &__icons {
-    width: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    @include flex(flex, wrap, row, space-between, stretch);
 
     &__item {
-      font-size: 22px;
-      color: #fff;
+      font-size: 25px;
+      color: $white-color;
       cursor: pointer;
+      margin: 0 5px;
+      transition: color 300ms;
     }
+
+    &__item:hover {
+      color: $hover-color;
+    }
+  }
+
+  &__bars--mobile {
+    display: none;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .navbar {
-    display: none;
-  }
+    justify-content: space-around;
 
-  .navbar__mobile {
-    display: block;
+    &__menu--mobile,
+    &__icons--mobile {
+      display: none;
+    }
+
+    &__menu {
+      position: absolute;
+      top: 100px;
+      width: 100%;
+      @include flex(flex, nowrap, column, space-between, center);
+      background-color: $white-color;
+
+      &__link {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        color: $black-color;
+        transition: all 300ms;
+        font-weight: 500;
+      }
+
+      &__link:hover {
+        background-color: $black-color;
+        color: $white-color;
+      }
+    }
+
+    &__icons {
+      position: absolute;
+      top: 324px;
+      background-color: $white-color;
+      width: 100%;
+      padding: 20px 25px;
+      border-top: 1px solid #ccc;
+      transition: all 300ms;
+
+      &__item {
+        color: $black-color;
+        font-size: 25px;
+      }
+    }
+
+    &__bars--mobile {
+      display: block;
+    }
+
+    &__bars__button--mobile {
+      cursor: pointer;
+      color: $white-color;
+      font-size: 30px;
+      background-color: $black-color;
+      border: none;
+      transition: color 300ms;
+    }
+
+    &__bars__button--mobile:hover {
+      color: $hover-color;
+    }
   }
 }
