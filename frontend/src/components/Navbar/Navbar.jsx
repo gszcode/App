@@ -20,7 +20,9 @@ export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar__image navbar__image--mobile">
-        <img src={logo} alt="Logo" className="navbar__image__logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" className="navbar__image__logo" />
+        </Link>
       </div>
       <div className="navbar__bars--mobile">
         <button onClick={handleClick} className="navbar__bars__button--mobile">
