@@ -1,10 +1,15 @@
-import Footer from './components/Footer/Footer'
+import { Navbar } from './components/Navbar/Navbar'
 import Landing from './Pages/Landing'
+import Footer from './components/Footer/Footer'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <>
-      <Landing />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
       <Footer />
     </>
   )
