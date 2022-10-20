@@ -18,15 +18,15 @@ $white-color: #fff;
   color: $white-color;
 
   &__welcome {
-    &--title {
+    &__title {
       @include titles(center, 17px, 65px);
     }
 
-    &--subtitle {
+    &__subtitle {
       @include titles(center, 30px, 65px);
     }
 
-    &--scroll {
+    &__scroll {
       display: block;
       margin: auto;
       width: 150px;
@@ -39,7 +39,7 @@ $white-color: #fff;
       transition: all 300ms;
     }
 
-    &--scroll:hover {
+    &__scroll:hover {
       background-color: transparent;
       border: 1px solid $white-color;
       color: $white-color;
