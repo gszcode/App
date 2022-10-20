@@ -18,16 +18,16 @@ export default function Footer() {
         <img src={appStore} alt="AppStore" className="footer__download--img" />
       </section>
       <section className="footer__header">
-        <h2 className="footer__header--title">ECOMMERCE</h2>
-        <span className="footer__header--span">
+        <h2 className="footer__header__title">ECOMMERCE</h2>
+        <span className="footer__header__span">
           High Quality is our first priority
         </span>
-        <span className="footer__header--span">
+        <span className="footer__header__span">
           Copyrights 2022 &copy; @GszCode.
         </span>
       </section>
       <section className="footer__links">
-        <h3 className="footer__links--title">Follow Us</h3>
+        <h3 className="footer__links__title">Follow Us</h3>
         <div className="socials">
           <a
             className="socials__item"
