@@ -1,0 +1,91 @@
+@mixin widthHeight($width, $height, $backgorund) {
+  width: $width;
+  height: $height;
+  background: $backgorund;
+}
+
+.about {
+  @include widthHeight(100vw, 100vh, #fff);
+  display: flex;
+
+  &__left {
+    @include widthHeight(50%, 100vh, #fff);
+  }
+
+  &__right {
+    @include widthHeight(
+      50%,
+      100%,
+      linear-gradient(to bottom right, rgb(78, 81, 255), rgb(74, 137, 189))
+    );
+  }
+
+  &__profile {
+    position: absolute;
+    left: 12%;
+    top: 150px;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.192);
+
+    h2 {
+      font-size: 40px;
+      font-weight: 200;
+      color: rgb(217, 81, 81);
+    }
+
+    .me {
+      text-align: center;
+
+      &__photo {
+        display: block;
+        width: 270px;
+        height: 270px;
+        object-fit: contain;
+        margin: 30px auto;
+        border-radius: 99%;
+        box-shadow: 0px 0px 3px #bbb;
+      }
+
+      &__name {
+        font-size: 20px;
+      }
+
+      &__parrafo {
+        width: 65%;
+        margin: 20px auto;
+      }
+    }
+  }
+
+  &__span {
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+@media screen and (max-width: 1125px) {
+  .about {
+    &__profile {
+      left: 6%;
+      top: 120px;
+      margin: 0 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about {
+    &__profile {
+      top: 15%;
+    }
+
+    .me__parrafo {
+      width: 100%;
+    }
+  }
+}
