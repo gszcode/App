@@ -2,7 +2,7 @@ import './Landing.scss'
 import { BsMouse } from 'react-icons/bs'
 import { FeaturedProducts } from '../FeaturedProducts/FeaturedProducts'
 
-export default function Landing() {
+export function Landing() {
   return (
     <>
       <section className="landing">
