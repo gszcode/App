@@ -2,7 +2,7 @@ import googlePlay from '../../images/playstore.png'
 import appStore from '../../images/Appstore.png'
 import './Footer.scss'
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="footer">
       <section className="footer__download">
