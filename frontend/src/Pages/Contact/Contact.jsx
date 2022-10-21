@@ -3,7 +3,7 @@ import './Contact.scss'
 
 export const Contact = () => {
   return (
-    <div className="contact">
+    <section className="contact">
       <a className="contact__email" href="mailto:gszcode@gmail.com">
         CONTACT: GSZCODE@GMAIL.COM
       </a>
@@ -42,6 +42,6 @@ export const Contact = () => {
           </a>
         </span>
       </div>
-    </div>
+    </section>
   )
 }
