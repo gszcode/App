@@ -1,0 +1,53 @@
+.contact {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__email {
+    color: #444;
+    font-size: 35px;
+    background-color: #fff;
+    margin: 45px 0;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+
+    &__item {
+      font-size: 25px;
+
+      .social {
+        margin: -5px 15px;
+        font-size: 30px;
+        color: #444;
+      }
+
+      .social__name {
+        color: rgb(217, 81, 81);
+      }
+
+      .social__name:hover {
+        color: rgb(217, 81, 81, 0.8);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .contact {
+    &__email {
+      text-align: center;
+      font-size: 25px;
+    }
+
+    &__links {
+      flex-direction: column;
+    }
+  }
+}
