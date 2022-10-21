@@ -44,9 +44,15 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className={barsState ? 'navbar__icons' : 'navbar__icons--mobile'}>
-        <FaSistrix className="navbar__icons__item" />
-        <FaShoppingCart className="navbar__icons__item" />
-        <FaUser className="navbar__icons__item" />
+        <Link to="/search">
+          <FaSistrix className="navbar__icons__item" />
+        </Link>
+        <Link to="/shop">
+          <FaShoppingCart className="navbar__icons__item" />
+        </Link>
+        <Link to="/user">
+          <FaUser className="navbar__icons__item" />
+        </Link>
       </div>
     </nav>
   )
