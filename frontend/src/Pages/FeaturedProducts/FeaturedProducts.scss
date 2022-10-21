@@ -2,7 +2,7 @@
   padding: 25px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   margin: 25px 0 100px 0;
@@ -15,21 +15,24 @@
   }
 
   &__product {
-    width: 290px;
-    height: 515px;
+    width: 260px;
+    height: 450px;
     margin: 5px 0;
     padding: 10px;
     transition: all 300ms;
+    text-align: center;
 
     &__img {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
+      width: 70%;
+      height: 275px;
+      object-fit: contain;
+      display: block;
+      margin: auto;
       margin-bottom: 10px;
     }
 
     &__title {
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 200;
       color: #000;
     }
@@ -41,7 +44,7 @@
     }
 
     &__price {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       color: rgb(217, 81, 81);
     }
