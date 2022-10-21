@@ -52,3 +52,9 @@
     transform: translateY(-5%);
   }
 }
+
+@media screen and (max-width: 640px) {
+  .featured {
+    justify-content: center;
+  }
+}
