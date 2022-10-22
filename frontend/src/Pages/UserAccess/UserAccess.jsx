@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Login } from '../../components/Login/Login'
+import { Register } from '../../components/Register/Register'
 import './UserAccess.scss'
 
 export const UserAccess = () => {
@@ -11,8 +13,6 @@ export const UserAccess = () => {
       ? setAccess({ login: false, register: true })
       : setAccess({ login: true, register: false })
   }
-
-  console.log(access)
 
   return (
     <section className="access">
@@ -41,6 +41,7 @@ export const UserAccess = () => {
             }
           />
         </div>
+        {access.login ? <Login /> : <Register />}
       </div>
     </section>
   )
