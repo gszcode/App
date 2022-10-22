@@ -30,7 +30,7 @@ $border-white: #fff;
 
     &__parrafo {
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     &__img {
@@ -58,7 +58,7 @@ $border-white: #fff;
   &__links {
     &__title {
       text-align: center;
-      font-size: 22px;
+      font-size: 17px;
       width: 120px;
       margin: auto;
       border-bottom: 1px solid $border-white;
@@ -71,6 +71,7 @@ $border-white: #fff;
 
       &__item {
         color: #fff;
+        font-size: 15px;
         text-decoration: none;
         transition: all 300ms;
       }
