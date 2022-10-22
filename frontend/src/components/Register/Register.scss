@@ -1,0 +1,67 @@
+$white-color: #fff;
+$shadow-color: #444;
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+
+  &__input {
+    box-shadow: 0px 0px 3px $shadow-color;
+    width: 85%;
+    height: 50px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    font-size: 20px;
+    color: $shadow-color;
+    line-height: 25px;
+    position: relative;
+
+    &__icon {
+      position: absolute;
+      left: 10px;
+      top: 14px;
+    }
+
+    input {
+      border: none;
+      font-size: 15px;
+      padding: 0 25px;
+      height: 100%;
+      outline: none;
+      color: $shadow-color;
+    }
+
+    .eye {
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      color: #444;
+      cursor: pointer;
+      transition: all 300ms;
+    }
+
+    .eye:hover {
+      color: #666;
+    }
+  }
+
+  &__btn {
+    width: 85%;
+    height: 50px;
+    margin: 40px 0;
+    border: none;
+    color: $white-color;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: rgb(217, 81, 81);
+    transition: background 300ms;
+  }
+
+  &__btn:hover {
+    background-color: rgb(217, 81, 81, 0.9);
+  }
+}
