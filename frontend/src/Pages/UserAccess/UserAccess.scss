@@ -1,0 +1,40 @@
+.access {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(241, 241, 241);
+
+  &__components {
+    width: 380px;
+    height: 480px;
+    background-color: #fff;
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__input {
+        width: 50%;
+        height: 60px;
+        font-size: 18px;
+        background-color: #fff;
+        border: none;
+        color: #444;
+        cursor: pointer;
+        border-bottom: 2px solid #fff;
+        transition: all 300ms;
+      }
+
+      &__input:hover {
+        color: #222;
+      }
+
+      &__input--focus {
+        border-bottom: 2px solid rgb(217, 81, 81);
+      }
+    }
+  }
+}
