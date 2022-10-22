@@ -11,7 +11,7 @@ export const About = () => {
           <img className="me__photo" src={photo} alt="Profile" />
           <h4 className="me__name">Gabriel Sanchez</h4>
           <p className="me__parrafo">
-            this is a sample website made by @gszcode. Only with the purpose to
+            This is a sample website made by @gszcode. Only with the purpose to
             practice MERN STACK.
           </p>
         </div>
