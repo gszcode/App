@@ -50,7 +50,7 @@ export const Navbar = () => {
         <Link to="/shop">
           <FaShoppingCart className="navbar__icons__item" />
         </Link>
-        <Link to="/user">
+        <Link to="/user-access">
           <FaUser className="navbar__icons__item" />
         </Link>
       </div>
