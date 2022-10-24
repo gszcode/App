@@ -1,5 +1,7 @@
 # E-commerce of products
 
+![Landing Page](https://chipper-gumdrop-c19e4e.netlify.app/static/media/cover.e2edeab17643ab2951c0.jfif)
+
 ## Tech Stack
 
 **Client**: ReactJS, Redux Toolkit, Sweetalert2, Sass ( BEM CSS )
