@@ -6,7 +6,7 @@ $shadow-color: #444;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 3px 0;
+  margin: 10px 0;
 
   &__input {
     box-shadow: 0px 0px 3px $shadow-color;
@@ -52,7 +52,7 @@ $shadow-color: #444;
   &__btn {
     width: 85%;
     height: 50px;
-    margin: 35px 0;
+    margin: 15px 0;
     border: none;
     color: $white-color;
     font-size: 17px;
