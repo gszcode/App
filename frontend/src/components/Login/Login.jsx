@@ -31,11 +31,18 @@ export const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault()
+    const { name, value } = e.target
+
+    setErrors(validateLogin({ ...form, [name]: value }))
   }
 
   return (
     <form onSubmit={handleSubmit} className="login">
-      <div className="login__input">
+      <div
+        className={
+          errors.email ? 'login__input login__input--error' : 'login__input'
+        }
+      >
         <span className="login__input__icon">
           <AiOutlineMail />
         </span>
@@ -46,9 +53,13 @@ export const Login = () => {
           value={form.email}
           onChange={handleChange}
         />
-        <span style={{ 'font-size': '15px' }}>{errors.email}</span>
+        <span className="login__error">{errors.email}</span>
       </div>
-      <div className="login__input">
+      <div
+        className={
+          errors.password ? 'login__input login__input--error' : 'login__input'
+        }
+      >
         <span className="login__input__icon">
           <AiOutlineUnlock />
         </span>
@@ -62,12 +73,20 @@ export const Login = () => {
         <span onClick={handleClick} className="eye">
           {seePassword ? <AiFillEyeInvisible /> : <AiFillEye />}
         </span>
-        <span style={{ 'font-size': '15px' }}>{errors.password}</span>
+        <span className="login__error">{errors.password}</span>
       </div>
       <Link to="/password/forgot" className="login__forget">
         Forget Password?
       </Link>
-      <button className="login__btn">Login</button>
+      <button
+        className={
+          !form.email || !form.password
+            ? 'login__btn login__btn--disabled'
+            : 'login__btn'
+        }
+      >
+        Login
+      </button>
     </form>
   )
 }
