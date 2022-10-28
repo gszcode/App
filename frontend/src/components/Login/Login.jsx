@@ -7,6 +7,9 @@ import {
 } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { validateLogin } from '../../utils/errorsForms'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import axios from 'axios'
 import './Login.scss'
 
 export const Login = () => {
@@ -14,6 +17,7 @@ export const Login = () => {
   const [seePassword, setSeePassword] = useState(false)
   const [form, setForm] = useState(user)
   const [errors, setErrors] = useState(user)
+  const navigate = useNavigate()
 
   function handleClick() {
     setSeePassword((prevValue) => !prevValue)
@@ -31,6 +35,36 @@ export const Login = () => {
     const { name, value } = e.target
 
     setErrors(validateLogin({ ...form, [name]: value }))
+
+    // login de usuarios
+    axios
+      .post('http://localhost:3001/api/v1/auth/login', form)
+      .then((data) => {
+        if (data.data.success) return navigate('/')
+      })
+      .catch((error) => {
+        const onlyError = error.response.data.message
+
+        if (onlyError) {
+          Swal.fire({
+            title: 'Error!',
+            text: onlyError,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+
+        const errors = error.response.data.errors
+
+        errors.forEach((e) => {
+          Swal.fire({
+            title: 'Error!',
+            text: e.msg,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        })
+      })
   }
 
   return (
