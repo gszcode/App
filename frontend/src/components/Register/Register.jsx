@@ -7,20 +7,23 @@ import {
   AiFillEyeInvisible
 } from 'react-icons/ai'
 import { validateRegister } from '../../utils/errorsForms'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Register.scss'
 
 export const Register = () => {
-  const user = { user: '', email: '', password: '', repassword: '' }
+  const user = { name: '', email: '', password: '', repassword: '' }
   const [seePassword, setSeePassword] = useState(false)
   const [seeRePassword, setSeeRePassword] = useState(false)
   const [errors, setErrors] = useState(user)
   const [form, setForm] = useState(user)
+  const navigate = useNavigate()
 
-  function handleClickPassword(e) {
+  function handleClickPassword() {
     setSeePassword((prevValue) => !prevValue)
   }
 
-  function handleClickRePassword(e) {
+  function handleClickRePassword() {
     setSeeRePassword((prevValue) => !prevValue)
   }
 
@@ -36,13 +39,21 @@ export const Register = () => {
     const { name, value } = e.target
 
     setErrors(validateRegister({ ...form, [name]: value }))
+
+    // registro de usuarios
+    axios
+      .post('http://localhost:3001/api/v1/auth/register', form)
+      .then((data) => {
+        if (data.data.success) return navigate('/')
+      })
+      .catch((error) => console.log(error))
   }
 
   return (
     <form onSubmit={handleSubmit} className="register">
       <div
         className={
-          errors.user
+          errors.name
             ? 'register__input register__input--error'
             : 'register__input'
         }
@@ -51,12 +62,13 @@ export const Register = () => {
           <AiOutlineUser />
         </span>
         <input
-          name="user"
+          name="name"
           onChange={handleChange}
           type="text"
-          placeholder="User"
+          placeholder="Name"
+          value={form.name}
         />
-        <span className="register__error">{errors.user}</span>
+        <span className="register__error">{errors.name}</span>
       </div>
       <div
         className={
@@ -73,6 +85,7 @@ export const Register = () => {
           onChange={handleChange}
           type="email"
           placeholder="Email"
+          value={form.email}
         />
         <span className="register__error">{errors.email}</span>
       </div>
@@ -91,6 +104,7 @@ export const Register = () => {
           onChange={handleChange}
           type={seePassword ? 'text' : 'password'}
           placeholder="Password"
+          value={form.password}
         />
         <span onClick={handleClickPassword} name="aye_pass" className="eye">
           {seePassword ? <AiFillEyeInvisible /> : <AiFillEye />}
@@ -112,6 +126,7 @@ export const Register = () => {
           onChange={handleChange}
           type={seeRePassword ? 'text' : 'password'}
           placeholder="Repeat Password"
+          value={form.repassword}
         />
         <span onClick={handleClickRePassword} className="eye">
           {seeRePassword ? <AiFillEyeInvisible /> : <AiFillEye />}
@@ -120,7 +135,7 @@ export const Register = () => {
       </div>
       <button
         className={
-          !form.user || !form.email || !form.password || !form.repassword
+          !form.name || !form.email || !form.password || !form.repassword
             ? 'register__btn register__btn--disabled'
             : 'register__btn'
         }
