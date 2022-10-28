@@ -26,9 +26,6 @@ export const Login = () => {
     setErrors(validateLogin({ ...form, [name]: value }))
   }
 
-  console.log({ form })
-  console.log({ errors })
-
   function handleSubmit(e) {
     e.preventDefault()
     const { name, value } = e.target
