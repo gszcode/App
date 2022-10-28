@@ -9,6 +9,7 @@ import {
 import { validateRegister } from '../../utils/errorsForms'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import './Register.scss'
 
 export const Register = () => {
@@ -46,7 +47,29 @@ export const Register = () => {
       .then((data) => {
         if (data.data.success) return navigate('/')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        const onlyError = error.response.data.message
+
+        if (onlyError) {
+          Swal.fire({
+            title: 'Error!',
+            text: onlyError,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+
+        const errors = error.response.data.errors
+
+        errors.forEach((e) => {
+          Swal.fire({
+            title: 'Error!',
+            text: e.msg,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        })
+      })
   }
 
   return (
