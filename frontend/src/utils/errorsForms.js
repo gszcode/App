@@ -1,7 +1,7 @@
 export const validateRegister = (form) => {
   let errors = {}
 
-  !form.user ? (errors.user = 'Required field.') : (errors.user = '')
+  !form.name ? (errors.name = 'Required field.') : (errors.name = '')
 
   !form.email ? (errors.email = 'Required field.') : (errors.email = '')
 
