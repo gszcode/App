@@ -6,20 +6,20 @@ const userSchema = new Schema(
     name: {
       type: String,
       trim: true,
-      required: [true, 'Please enter your Name'],
-      minLength: [4, 'Name should have more than 4 characteres'],
-      maxLength: [25, 'Name cannot exced 30 characteres']
+      required: true,
+      minLength: 4,
+      maxLength: 25
     },
     email: {
       type: String,
       trim: true,
-      required: [true, 'Please enter your Email'],
+      required: true,
       unique: true
     },
     password: {
       type: String,
-      required: [true, 'Please enter your Password'],
-      minLength: [8, 'Password should have more than 8 characteres'],
+      required: true,
+      minLength: 8,
       trim: true
     },
     avatar: {
