@@ -7,17 +7,24 @@ import {
   AiFillEyeInvisible
 } from 'react-icons/ai'
 import { validateRegister } from '../../utils/errorsForms'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerAndLoginUser } from '../../reducer/user/userSlice'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import Swal from 'sweetalert2'
 import './Register.scss'
 
 export const Register = () => {
-  const user = { name: '', email: '', password: '', repassword: '' }
+  const userData = {
+    name: '',
+    email: '',
+    password: '',
+    repassword: ''
+  }
   const [seePassword, setSeePassword] = useState(false)
   const [seeRePassword, setSeeRePassword] = useState(false)
-  const [errors, setErrors] = useState(user)
-  const [form, setForm] = useState(user)
+  const [errors, setErrors] = useState(userData)
+  const [form, setForm] = useState(userData)
+  const { user } = useSelector((state) => state.users)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   function handleClickPassword() {
@@ -42,38 +49,18 @@ export const Register = () => {
     setErrors(validateRegister({ ...form, [name]: value }))
 
     // registro de usuarios
-    axios
-      .post('http://localhost:3001/api/v1/auth/register', form)
-      .then((data) => {
-        if (data.data.success) return navigate('/')
-      })
-      .catch((error) => {
-        const onlyError = error.response.data.message
-
-        if (onlyError) {
-          Swal.fire({
-            title: 'Error!',
-            text: onlyError,
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
-        }
-
-        const errors = error.response.data.errors
-
-        errors.forEach((e) => {
-          Swal.fire({
-            title: 'Error!',
-            text: e.msg,
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
-        })
-      })
+    dispatch(
+      registerAndLoginUser(
+        'http://localhost:3001/api/v1/auth/register',
+        form,
+        'register'
+      )
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="register">
+      {user.success && navigate('/')}
       <div
         className={
           errors.name
