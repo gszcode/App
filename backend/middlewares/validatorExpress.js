@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator')
+import { body, validationResult } from 'express-validator'
 
 const resultValidator = (req, res, next) => {
   const errors = validationResult(req)
@@ -46,7 +46,7 @@ export const loginValidator = [
   body('email')
     .trim()
     .notEmpty()
-    .withMessage('Enter your Email')
+    .withMessage('Enter your Emaiasdl')
     .isEmail()
     .normalizeEmail()
     .withMessage('Invalid Email or Password'),
