@@ -6,17 +6,19 @@ import {
   AiFillEyeInvisible
 } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { validateLogin } from '../../utils/errorsForms'
+import { validateLogin } from '../../utils/errorsForms.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerAndLoginUser } from '../../reducer/user/userSlice'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
-import axios from 'axios'
 import './Login.scss'
 
 export const Login = () => {
-  const user = { email: '', password: '' }
+  const userData = { email: '', password: '' }
   const [seePassword, setSeePassword] = useState(false)
-  const [form, setForm] = useState(user)
-  const [errors, setErrors] = useState(user)
+  const [form, setForm] = useState(userData)
+  const [errors, setErrors] = useState(userData)
+  const { user } = useSelector((state) => state.users)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   function handleClick() {
@@ -37,38 +39,18 @@ export const Login = () => {
     setErrors(validateLogin({ ...form, [name]: value }))
 
     // login de usuarios
-    axios
-      .post('http://localhost:3001/api/v1/auth/login', form)
-      .then((data) => {
-        if (data.data.success) return navigate('/')
-      })
-      .catch((error) => {
-        const onlyError = error.response.data.message
-
-        if (onlyError) {
-          Swal.fire({
-            title: 'Error!',
-            text: onlyError,
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
-        }
-
-        const errors = error.response.data.errors
-
-        errors.forEach((e) => {
-          Swal.fire({
-            title: 'Error!',
-            text: e.msg,
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
-        })
-      })
+    dispatch(
+      registerAndLoginUser(
+        'http://localhost:3001/api/v1/auth/login',
+        form,
+        'login'
+      )
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="login">
+      {user.success && navigate('/')}
       <div
         className={
           errors.email ? 'login__input login__input--error' : 'login__input'
