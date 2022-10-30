@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken'
-import User from '../models/userModel.js'
 
-export const generateToken = async (uid, res) => {
+export const generateToken = (uid, res) => {
   const expiresIn = process.env.JWT_EXPIRE
-  const user = await User.findById(uid, { password: 0 })
 
   const token = jwt.sign({ uid }, process.env.JWT_SECRET, {
     expiresIn
@@ -19,7 +17,6 @@ export const generateToken = async (uid, res) => {
 
   return res.status(200).cookie('token', token, options).json({
     success: true,
-    token,
-    user
+    token
   })
 }
