@@ -6,7 +6,7 @@ import {
   registerValidator
 } from '../middlewares/validatorExpress.js'
 import {
-  infoUser,
+  userProfile,
   login,
   logout,
   register
@@ -14,11 +14,12 @@ import {
 
 const router = Router()
 
+// register - login - logout
 router.post('/register', registerValidator, register)
 router.post('/login', loginValidator, login)
 router.get('/logout', verifyToken, logout)
 
-// Prueba
-router.get('/info', verifyToken, validatorRole, infoUser)
+// profile
+router.get('/profile', verifyToken, userProfile)
 
 export default router
