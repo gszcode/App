@@ -3,8 +3,8 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const initialState = {
-  user: []
-  // errors: []
+  user: [],
+  userData: []
 }
 
 export const userSlice = createSlice({
@@ -13,17 +13,17 @@ export const userSlice = createSlice({
   reducers: {
     getUser: (state, action) => {
       state.user = action.payload
+    },
+    getUserData: (state, action) => {
+      state.userData = action.payload
     }
-    // getErrors: (state, action) => {
-    //   state.errors = action.payload
-    // }
   }
 })
 
-export const { getUser, getErrors } = userSlice.actions
+export const { getUser, getUserData } = userSlice.actions
 export default userSlice.reducer
 
-// Llamadas a la api
+// Registro e Inicio de sesión
 export const registerAndLoginUser = (url, form, loginOrRegister) => {
   return (dispatch) => {
     axios
@@ -59,6 +59,25 @@ export const registerAndLoginUser = (url, form, loginOrRegister) => {
             icon: 'error',
             confirmButtonText: 'Close'
           })
+        })
+      })
+  }
+}
+
+// Obtener datos del usuario
+export const getProfileUser = () => {
+  return (dispatch) => {
+    axios
+      .get('http://localhost:3001/api/v1/auth/profile', {
+        withCredentials: true
+      })
+      .then((data) => dispatch(getUserData(data)))
+      .catch((err) => {
+        Swal.fire({
+          title: 'Error!',
+          text: err,
+          icon: 'error',
+          confirmButtonText: 'Cool'
         })
       })
   }
