@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom'
+import logo from '../../images/logo.png'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import './Navbar.scss'
 import {
   FaSistrix,
   FaShoppingCart,
@@ -6,12 +10,10 @@ import {
   FaBars,
   FaTimes
 } from 'react-icons/fa'
-import logo from '../../images/logo.png'
-import './Navbar.scss'
-import { useState } from 'react'
 
 export const Navbar = () => {
   const [barsState, setBarsState] = useState(false)
+  const { user } = useSelector((state) => state.users)
 
   function handleClick() {
     setBarsState((prevState) => !prevState)
@@ -50,9 +52,19 @@ export const Navbar = () => {
         <Link to="/shop">
           <FaShoppingCart className="navbar__icons__item" />
         </Link>
-        <Link to="/user-access">
-          <FaUser className="navbar__icons__item" />
-        </Link>
+        {!user.success ? (
+          <Link to="/user-access">
+            <FaUser className="navbar__icons__item" />
+          </Link>
+        ) : (
+          <Link to="/profile" className="navbar__icons__item">
+            <img
+              className="navbar__icons__img"
+              src={user.user.avatar}
+              alt="User Avatar"
+            />
+          </Link>
+        )}
       </div>
     </nav>
   )
