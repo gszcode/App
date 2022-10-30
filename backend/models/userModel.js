@@ -25,7 +25,7 @@ const userSchema = new Schema(
     avatar: {
       type: String,
       default:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrpGDGWXE18yDIVfampTKpShNQebC65Lg99Q&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnPjE6XeVDfS1fnLGfBtagErobejdjZhOHDw&usqp=CAU'
     },
     role: {
       type: String,
