@@ -6,6 +6,7 @@ import { Contact } from './Pages/Contact/Contact'
 import { About } from './Pages/About/About'
 import { Footer } from './components/Footer/Footer'
 import { UserAccess } from './Pages/UserAccess/UserAccess'
+import { Profile } from './Pages/Profile/Profile'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/search" element={<Search />} />
         <Route path="/user-access" element={<UserAccess />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </>
