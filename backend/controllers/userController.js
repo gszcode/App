@@ -48,9 +48,15 @@ export const logout = async (req, res) => {
 }
 
 // Info user
-export const infoUser = async (req, res) => {
-  console.log(req.uid)
-  const user = await User.findById(req.uid)
+export const userProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.uid, { password: 0, _id: 0 })
 
-  res.json(user)
+    return res.status(200).json({
+      success: true,
+      user
+    })
+  } catch (error) {
+    return res.status(404).json({ message: error.message })
+  }
 }
