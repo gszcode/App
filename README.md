@@ -14,11 +14,11 @@ To run this project, you will need to add the following environment variables to
 
 **API**
 
-`URI_MONGODB=`
-
-`JWT_SECRET=`
-
-`PORT=`
+`URI_MONGODB`
+`PORT`
+`JWT_SECRET`
+`JWT_EXPIRE`
+`COOKIE_EXPIRE`
 
 ---
 
@@ -27,7 +27,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-git clone https://github.com/gszcode/e-commerce.git
+git clone https://github.com/gszcode/App.git
 ```
 
 ---
