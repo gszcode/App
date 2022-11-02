@@ -20,6 +20,7 @@ export const Login = () => {
   const { user } = useSelector((state) => state.users)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  localStorage.setItem('token', user.token)
 
   function handleClick() {
     setSeePassword((prevValue) => !prevValue)
