@@ -65,6 +65,8 @@ $hover-color: rgb(217, 81, 81);
       border-radius: 50%;
       object-fit: cover;
       transition: opacity 300ms;
+      box-shadow: 0px 0px 5px rgb(160, 159, 159);
+      padding: 3px;
     }
 
     &__img:hover {
