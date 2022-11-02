@@ -13,6 +13,7 @@ export const register = async (req, res) => {
     user = new User({ name, email, password })
     await user.save()
 
+    // Generate token
     generateToken(user.id, res)
   } catch (error) {
     return res.status(400).json({ message: error.message })
@@ -50,7 +51,8 @@ export const logout = async (req, res) => {
 // Info user
 export const userProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.uid, { password: 0, _id: 0 })
+    const user = await User.findById(req.uid, { password: 0 })
+    console.log({ user })
 
     return res.status(200).json({
       success: true,
