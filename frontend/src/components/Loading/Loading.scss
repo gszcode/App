@@ -1,0 +1,33 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  color: rgb(229, 80, 31);
+
+  &__spinning {
+    animation: spinner 1s linear infinite;
+  }
+}
+
+@media screen and (min-width: 740px) {
+  .spinner {
+    right: 40%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .spinner {
+    right: 50%;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
