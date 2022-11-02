@@ -16,11 +16,14 @@ export const userSlice = createSlice({
     },
     getUserData: (state, action) => {
       state.userData = action.payload
+    },
+    clearState: (state, action) => {
+      state.user = []
     }
   }
 })
 
-export const { getUser, getUserData } = userSlice.actions
+export const { getUser, getUserData, clearState } = userSlice.actions
 export default userSlice.reducer
 
 // Registro e Inicio de sesión
@@ -29,6 +32,7 @@ export const registerAndLoginUser = (url, form, loginOrRegister) => {
     axios
       .post(url, form)
       .then((data) => {
+        console.log(data.data)
         dispatch(getUser(data.data))
         Swal.fire({
           title: 'Success!',
@@ -47,7 +51,7 @@ export const registerAndLoginUser = (url, form, loginOrRegister) => {
             title: 'Error!',
             text: onlyError,
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Close'
           })
         }
 
@@ -65,19 +69,23 @@ export const registerAndLoginUser = (url, form, loginOrRegister) => {
 }
 
 // Obtener datos del usuario
-export const getProfileUser = () => {
+export const getProfileUser = (url) => {
   return (dispatch) => {
     axios
-      .get('http://localhost:3001/api/v1/auth/profile', {
-        withCredentials: true
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
       })
-      .then((data) => dispatch(getUserData(data)))
+      .then((data) => {
+        dispatch(getUserData(data.data))
+      })
       .catch((err) => {
         Swal.fire({
           title: 'Error!',
-          text: err,
+          text: err.response.data.error,
           icon: 'error',
-          confirmButtonText: 'Cool'
+          confirmButtonText: 'Close'
         })
       })
   }
