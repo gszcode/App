@@ -60,7 +60,7 @@ export const Navbar = () => {
           <Link to="/profile" className="navbar__icons__item">
             <img
               className="navbar__icons__img"
-              src={user.user.avatar}
+              src={user.userAvatar.avatar}
               alt="User Avatar"
             />
           </Link>
