@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken'
+import User from '../models/userModel.js'
 
-export const generateToken = (uid, res) => {
+export const generateToken = async (uid, res) => {
   const expiresIn = process.env.JWT_EXPIRE
+  const userAvatar = await User.findById(uid, { avatar: 1 })
 
   const token = jwt.sign({ uid }, process.env.JWT_SECRET, {
     expiresIn
@@ -9,14 +11,21 @@ export const generateToken = (uid, res) => {
 
   // Options cookie
   const options = {
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
+    expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
     httpOnly: true
   }
 
-  return res.status(200).cookie('token', token, options).json({
+  res.status(201).cookie('token', token, options).json({
     success: true,
-    token
+    token,
+    userAvatar
   })
+}
+
+export const tokenVerificationErrors = {
+  'invalid signature': 'The JWT signature is not valid',
+  'jwt expired': 'Expired JWT',
+  'invalid token': 'Invalid token',
+  'No Bearer': 'Use bearer format',
+  'jwt malformed': 'JWT invalid format'
 }
