@@ -12,7 +12,8 @@ export const generateToken = async (uid, res) => {
   // Options cookie
   const options = {
     expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-    httpOnly: true
+    httpOnly: false,
+    secure: false
   }
 
   res.status(201).cookie('token', token, options).json({
