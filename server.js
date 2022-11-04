@@ -1,6 +1,6 @@
 import 'dotenv/config'
-import './database.js'
-import app from './app.js'
+import './backend/database.js'
+import app from './backend/app.js'
 
 // Initialization
 const PORT = process.env.PORT || 3001
