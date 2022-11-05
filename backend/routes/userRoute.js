@@ -26,4 +26,8 @@ router.get('/profile', verifyToken, userProfile)
 // get users
 router.get('/admin/users', verifyToken, validatorRole, getAllUser)
 
+router.get('/hola', (req, res) => {
+  res.send('holis')
+})
+
 export default router
