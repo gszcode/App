@@ -50,13 +50,7 @@ export const Register = () => {
     setErrors(validateRegister({ ...form, [name]: value }))
 
     // registro de usuarios
-    dispatch(
-      registerAndLoginUser(
-        'http://localhost:3001/api/v1/auth/register',
-        form,
-        'register'
-      )
-    )
+    dispatch(registerAndLoginUser('/api/v1/auth/register', form, 'register'))
   }
 
   return (
