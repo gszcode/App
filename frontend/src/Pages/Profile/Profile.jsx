@@ -12,7 +12,7 @@ export function Profile() {
   const { userData } = useSelector((state) => state.users)
 
   useEffect(() => {
-    dispatch(getProfileUser('/api/v1/auth/profile'))
+    dispatch(getProfileUser('http://localhost:3001/api/v1/auth/profile'))
   }, [dispatch])
 
   function handleClick() {
