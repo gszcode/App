@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearState, getProfileUser } from '../../reducer/user/userSlice'
 import { Loading } from '../../components/Loading/Loading'
+import { Link } from 'react-router-dom'
 import './Profile.scss'
 
 export function Profile() {
@@ -48,7 +49,14 @@ export function Profile() {
                 </p>
               </div>
 
-              <button className="profile__data__btn">My Orders</button>
+              <button className="profile__data__btn">
+                <Link
+                  to={userData.user.role === 'user' ? '/orders' : '/dashboard'}
+                  className="link"
+                >
+                  {userData.user.role === 'user' ? 'My Orders' : 'Dashboard'}
+                </Link>
+              </button>
               <button onClick={handleClick} className="profile__data__btn">
                 Logout
               </button>
