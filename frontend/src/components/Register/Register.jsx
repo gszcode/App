@@ -51,13 +51,7 @@ export const Register = () => {
     setErrors(validateRegister({ ...form, [name]: value }))
 
     // registro de usuarios
-    dispatch(
-      registerAndLoginUser(
-        `${axios.defaults.baseURL}/api/v1/auth/register`,
-        form,
-        'register'
-      )
-    )
+    dispatch(registerAndLoginUser('/api/v1/auth/register', form, 'register'))
   }
 
   return (

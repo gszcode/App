@@ -41,13 +41,7 @@ export const Login = () => {
     setErrors(validateLogin({ ...form, [name]: value }))
 
     // login de usuarios
-    dispatch(
-      registerAndLoginUser(
-        `${axios.defaults.baseURL}/api/v1/auth/login`,
-        form,
-        'login'
-      )
-    )
+    dispatch(registerAndLoginUser('/api/v1/auth/login', form, 'login'))
   }
 
   return (
