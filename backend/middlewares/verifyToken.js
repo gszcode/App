@@ -3,7 +3,8 @@ import { tokenVerificationErrors } from '../utils/generateToken.js'
 
 export const verifyToken = (req, res, next) => {
   // const { token } = req.cookies
-  const token = req.headers.authorization.split(' ')[1]
+  let token = req.headers.authorization.split(' ')
+  token = token[1]
 
   try {
     if (!token) throw new Error('Please Login to access this resource')
