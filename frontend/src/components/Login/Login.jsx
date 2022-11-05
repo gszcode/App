@@ -10,6 +10,7 @@ import { validateLogin } from '../../utils/errorsForms.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerAndLoginUser } from '../../reducer/user/userSlice'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Login.scss'
 
 export const Login = () => {
@@ -40,7 +41,13 @@ export const Login = () => {
     setErrors(validateLogin({ ...form, [name]: value }))
 
     // login de usuarios
-    dispatch(registerAndLoginUser('/api/v1/auth/login', form, 'login'))
+    dispatch(
+      registerAndLoginUser(
+        `${axios.defaults.baseURL}/api/v1/auth/login`,
+        form,
+        'login'
+      )
+    )
   }
 
   return (

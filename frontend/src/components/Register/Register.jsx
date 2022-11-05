@@ -10,6 +10,7 @@ import { validateRegister } from '../../utils/errorsForms'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerAndLoginUser } from '../../reducer/user/userSlice'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Register.scss'
 
 export const Register = () => {
@@ -50,7 +51,13 @@ export const Register = () => {
     setErrors(validateRegister({ ...form, [name]: value }))
 
     // registro de usuarios
-    dispatch(registerAndLoginUser('/api/v1/auth/register', form, 'register'))
+    dispatch(
+      registerAndLoginUser(
+        `${axios.defaults.baseURL}/api/v1/auth/register`,
+        form,
+        'register'
+      )
+    )
   }
 
   return (
