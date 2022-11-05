@@ -62,3 +62,19 @@ export const userProfile = async (req, res) => {
     return res.status(404).json({ message: error.message })
   }
 }
+
+// Get all users (admin)
+export const getAllUser = async (req, res) => {
+  try {
+    const users = await User.find({})
+
+    if (!users) throw new Error('There are not Users')
+
+    return res.status(200).json({
+      success: true,
+      users
+    })
+  } catch (error) {
+    return res.status(404).json({ message: error.message })
+  }
+}
