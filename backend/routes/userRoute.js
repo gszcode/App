@@ -9,7 +9,8 @@ import {
   userProfile,
   login,
   logout,
-  register
+  register,
+  getAllUser
 } from '../controllers/userController.js'
 
 const router = Router()
@@ -21,5 +22,8 @@ router.get('/logout', verifyToken, logout)
 
 // profile
 router.get('/profile', verifyToken, userProfile)
+
+// get users
+router.get('/admin/users', verifyToken, validatorRole, getAllUser)
 
 export default router
